@@ -18,7 +18,7 @@ class CreateAppointmentService {
     const appointmentExists = await repository.findByDate(appointmentDate);
 
     if (appointmentExists) {
-      throw Error('This appointment is already booked');
+      throw new Error('This appointment is already booked');
     }
 
     const appointment = repository.create({
