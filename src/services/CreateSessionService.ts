@@ -21,9 +21,9 @@ interface Response {
 
 class CreateSessionService {
   public async execute({ email, password }: Request): Promise<Response> {
-    const usersRepository = getRepository(User);
+    const repository = getRepository(User);
 
-    const user = await usersRepository.findOne({ where: { email } });
+    const user = await repository.findOne({ where: { email } });
 
     if (!user) {
       throw new Error('User does not exists or password does not match.');
