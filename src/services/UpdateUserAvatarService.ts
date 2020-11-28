@@ -4,6 +4,8 @@ import fs from 'fs';
 
 import uploadConfig from '../config/upload';
 
+import AppError from '../errors/AppError';
+
 import User from '../models/User';
 
 interface Request {
@@ -22,7 +24,7 @@ class UpdateUserAvatarServer {
     const user = await repository.findOne(user_id);
 
     if (!user) {
-      throw new Error('User not found.');
+      throw new AppError('User not found.', 404);
     }
 
     if (user.avatar) {
